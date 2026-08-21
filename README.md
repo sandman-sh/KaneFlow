@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="banner.svg" alt="KaneFlow Banner" width="100%" />
+  <img src="banner.png" alt="KaneFlow Banner" width="100%" />
 
   <br/><br/>
 
