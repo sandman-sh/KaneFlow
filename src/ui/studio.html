@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KaneFlow Studio — Autonomous Spec-Driven DevLoop & Self-Healing Engine</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.3.1/dist/driver.css"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="grid-lines">
+  <div class="studio-layout">
+    <!-- Header -->
+    <header class="studio-header">
+      <div class="header-left">
+        <a href="/" class="brand-link" aria-label="KaneFlow home">
+          <svg viewBox="0 0 100 100" class="logo-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" rx="14" fill="#000000" stroke="#a855f7" stroke-width="3"/>
+            <path d="M22 20 H42 V50 H22 Z" fill="#A855F7"/>
+            <path d="M78 20 H58 V38 H78 Z" fill="#C084FC"/>
+            <path d="M58 48 H78 V80 H58 Z" fill="#A855F7"/>
+            <path d="M22 62 H42 V80 H22 Z" fill="#7E22CE"/>
+            <circle cx="50" cy="50" r="5" fill="#FFFFFF"/>
+          </svg>
+          <div class="title-group">
+            <h1>Kane<span class="text-purple">Flow</span> <span class="badge-studio">STUDIO</span></h1>
+            <p>Autonomous Spec-Driven DevLoop • Kane CLI</p>
+          </div>
+        </a>
+        <a href="/" class="btn-ghost" style="padding: 4px 10px; font-size: 0.68rem; margin-left: 8px;">← Home</a>
+      </div>
+
+      <div class="header-center">
+        <div class="status-indicator-pill" id="global-status-pill">
+          <span class="status-dot-pulse" id="status-pulse-dot"></span>
+          <span class="status-text" id="status-text">SYSTEM READY</span>
+        </div>
+        <!-- AI Engine Status Badge -->
+        <button class="ai-engine-badge pixel-corner" id="btn-open-ai-settings" title="Configure AI Auto-Healer Model">
+          <span class="ai-dot"></span>
+          <span id="ai-engine-name">AI: Semantic Engine</span>
+          <span class="ai-cog">⚙</span>
+        </button>
+        <!-- Interactive Guide Tour Button -->
+        <button class="btn-tour pixel-corner" id="btn-start-tour" title="Take a visual guided tour">
+          <span class="tour-icon">🧭</span>
+          <span>Tour</span>
+        </button>
+      </div>
+
+      <div class="header-right">
+        <div class="metric-badge">
+          <span class="metric-label">TOTAL RUNS</span>
+          <span class="metric-val" id="metric-total">0</span>
+        </div>
+        <div class="metric-badge">
+          <span class="metric-label">SELF-HEALED</span>
+          <span class="metric-val text-cyan" id="metric-healed">0</span>
+        </div>
+        <div class="metric-badge">
+          <span class="metric-label">VERIFIED GREEN</span>
+          <span class="metric-val text-green" id="metric-passed">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Animated Ticker Marquee Bar -->
+    <div class="marquee-bar">
+      <div class="marquee-inner">
+        <div class="marquee-item">Universal Real-World App Testing <span class="marquee-dot"></span></div>
+        <div class="marquee-item">Plain-English Browser Automation <span class="marquee-dot"></span></div>
+        <div class="marquee-item">NDJSON Stream Telemetry <span class="marquee-dot"></span></div>
+        <div class="marquee-item">Autonomous Closed-Loop Self-Healing <span class="marquee-dot"></span></div>
+        <div class="marquee-item">Multi-Model LLM Code Repair <span class="marquee-dot"></span></div>
+        <div class="marquee-item">Red to Green Verification <span class="marquee-dot"></span></div>
+        <div class="marquee-item">Universal Real-World App Testing <span class="marquee-dot"></span></div>
+        <div class="marquee-item">Plain-English Browser Automation <span class="marquee-dot"></span></div>
+        <div class="marquee-item">NDJSON Stream Telemetry <span class="marquee-dot"></span></div>
+        <div class="marquee-item">Autonomous Closed-Loop Self-Healing <span class="marquee-dot"></span></div>
+        <div class="marquee-item">Multi-Model LLM Code Repair <span class="marquee-dot"></span></div>
+        <div class="marquee-item">Red to Green Verification <span class="marquee-dot"></span></div>
+      </div>
+    </div>
+
+    <!-- Main Studio Workspace Grid -->
+    <main class="studio-body">
+      <!-- Left Sidebar: Controls & Plain-English Specs -->
+      <aside class="sidebar-panel">
+        <!-- 1-Click Demo Showcase -->
+        <div class="panel-section">
+          <div class="section-header">
+            <span class="section-label"><span class="label-dot"></span> 01 / Demo</span>
+            <span class="badge-live">LIVE SHOWCASE</span>
+          </div>
+          <p class="section-hint">Trigger an automated regression bug and watch the closed-loop agent diagnose, patch, and seal green in seconds.</p>
+          <div class="demo-card pixel-corner">
+            <div class="demo-card-info">
+              <h4>Priority Filter Regression</h4>
+              <p>Breaks predicate logic in TaskFlow</p>
+            </div>
+            <button class="btn-primary" id="btn-demo-heal">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              Break & Auto-Heal
+            </button>
+          </div>
+        </div>
+
+        <!-- Plain English Specs Explorer -->
+        <div class="panel-section">
+          <div class="section-header">
+            <span class="section-label"><span class="label-dot"></span> 02 / Test Specs</span>
+            <div class="spec-header-actions">
+              <span class="spec-count" id="specs-count">0 specs</span>
+              <button class="btn-sm btn-ghost" id="btn-new-spec" title="Create a new Plain-English Spec">+ New</button>
+            </div>
+          </div>
+          <div class="specs-list" id="specs-list">
+            <!-- Dynamic specs -->
+          </div>
+        </div>
+
+        <!-- Custom Prompt Box -->
+        <div class="panel-section">
+          <div class="section-header">
+            <span class="section-label"><span class="label-dot"></span> 03 / Custom Run</span>
+          </div>
+          <div class="custom-prompt-box">
+            <textarea id="custom-prompt-input" rows="2" placeholder="e.g. Assert brand logo displays 'TaskFlow' and click 'Urgent' filter"></textarea>
+            <button id="btn-run-custom" class="btn-ghost">Run Kane Objective</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Center Panel: Timeline & Diff Viewer -->
+      <section class="center-panel">
+        <div class="tab-bar">
+          <button class="tab-btn active" data-tab="timeline">Closed-Loop Timeline</button>
+          <button class="tab-btn" data-tab="diff">Code Diff Inspector</button>
+          <button class="tab-btn" data-tab="logs">NDJSON Telemetry Stream</button>
+        </div>
+
+        <!-- Tab 1: Closed-Loop Timeline -->
+        <div class="tab-content active" id="tab-timeline">
+          <div class="timeline-container" id="timeline-container">
+            <div class="timeline-empty">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 14 14"></polyline>
+              </svg>
+              <p>NO ACTIVE EXECUTION LOOP.<br/>RUN A SPEC OR TRIGGER "BREAK & AUTO-HEAL".</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Code Diff Inspector -->
+        <div class="tab-content" id="tab-diff">
+          <div class="diff-viewer-box">
+            <div class="diff-header">
+              <span class="diff-filename" id="diff-filename">demo-app/app.js</span>
+              <span class="diff-tag">Healed Diff</span>
+            </div>
+            <pre class="diff-code" id="diff-code"><code>// No patches generated yet. Run Auto-Heal to inspect diffs.</code></pre>
+          </div>
+        </div>
+
+        <!-- Tab 3: Live NDJSON Stream Logs -->
+        <div class="tab-content" id="tab-logs">
+          <div class="log-stream-box" id="log-stream-box">
+            <!-- Dynamic stream logs -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Panel: Live Target Web App Embed with Universal URL Bar -->
+      <aside class="preview-panel">
+        <!-- Target App URL Bar Controls -->
+        <div class="preview-header">
+          <div class="preview-title-row">
+            <div class="preview-title">
+              <span class="dot-live"></span>
+              <h3>Target Application</h3>
+            </div>
+            <div class="preview-actions">
+              <a id="target-external-link" href="http://localhost:4101" target="_blank" class="preview-link" title="Open in new tab">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+              <button id="btn-reload-preview" class="btn-icon" title="Reload preview">↺</button>
+            </div>
+          </div>
+
+          <!-- Dynamic URL Switcher -->
+          <div class="target-url-bar">
+            <select id="target-preset-select" class="target-preset-dropdown">
+              <option value="http://localhost:4101">Preset: TaskFlow Pro (:4101)</option>
+              <option value="https://todomvc.com/examples/vanillajs/">Preset: TodoMVC (VanillaJS)</option>
+              <option value="https://news.ycombinator.com">Preset: Hacker News (Live)</option>
+              <option value="http://localhost:3000">Preset: Localhost (:3000)</option>
+              <option value="custom">Custom URL...</option>
+            </select>
+            <div class="target-url-input-wrap">
+              <input type="text" id="target-url-input" value="http://localhost:4101" placeholder="Enter target URL (e.g. http://localhost:3000)" />
+              <button id="btn-set-target" class="btn-target-go">Go</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="preview-iframe-wrapper">
+          <iframe id="target-iframe" src="http://localhost:4101" title="Target App Preview"></iframe>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Modal 1: Spec Editor Modal -->
+  <div class="modal-backdrop" id="spec-editor-modal">
+    <div class="modal-card pixel-corner">
+      <div class="modal-header">
+        <h3 id="modal-spec-title">Create Plain-English Spec</h3>
+        <button class="modal-close" id="btn-close-spec-modal">×</button>
+      </div>
+      <div class="modal-body">
+        <label class="modal-label">Filename (.md)</label>
+        <input type="text" id="modal-spec-filename" class="modal-input" placeholder="e.g. my_custom_feature_test.md" />
+        
+        <label class="modal-label">Plain-English Test Steps (Markdown)</label>
+        <textarea id="modal-spec-content" class="modal-textarea" rows="10" placeholder="## Step 1: Open and verify&#10;Assert brand logo is visible.&#10;&#10;## Step 2: Click action&#10;Click the button with text 'Submit'.&#10;Assert success banner appears."></textarea>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" id="btn-cancel-spec">Cancel</button>
+        <button class="btn-ghost" id="btn-save-spec">Save Spec</button>
+        <button class="btn-primary" id="btn-save-and-run-spec">Save & Run</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: AI Engine Settings Modal -->
+  <div class="modal-backdrop" id="ai-settings-modal">
+    <div class="modal-card pixel-corner">
+      <div class="modal-header">
+        <h3>AI Auto-Healer Engine Settings</h3>
+        <button class="modal-close" id="btn-close-ai-modal">×</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-hint">Choose which AI reasoning model powers the closed-loop code synthesis and repair engine.</p>
+        
+        <label class="modal-label">AI Engine / Model Provider</label>
+        <select id="modal-ai-provider" class="modal-input">
+          <option value="semantic">Built-in Semantic AST Engine (Zero-Config / Guaranteed Demo)</option>
+          <option value="gemini">Google Gemini (gemini-1.5-flash, gemini-1.5-pro, gemini-2.0)</option>
+          <option value="openai">OpenAI (gpt-4o, gpt-4o-mini, o1, o3)</option>
+          <option value="anthropic">Anthropic Claude (claude-3-5-sonnet, claude-3-haiku)</option>
+          <option value="deepseek">DeepSeek AI (deepseek-chat, deepseek-coder, deepseek-r1)</option>
+          <option value="openrouter">OpenRouter (Any multi-provider model)</option>
+          <option value="groq">Groq Cloud (llama-3.3-70b-versatile, mixtral-8x7b)</option>
+          <option value="ollama">Local Ollama / LM Studio (localhost:11434 / localhost:1234)</option>
+          <option value="custom">Custom OpenAI-Compatible API Endpoint</option>
+        </select>
+
+        <div id="ai-api-key-group" style="display: none; margin-top: 12px;">
+          <label class="modal-label">API Key</label>
+          <input type="password" id="modal-ai-key" class="modal-input" placeholder="Paste your API key (e.g. sk-...)" />
+        </div>
+
+        <div id="ai-model-group" style="display: none; margin-top: 12px;">
+          <label class="modal-label">Preferred Model Name</label>
+          <input type="text" id="modal-ai-model" class="modal-input" placeholder="e.g. deepseek-chat, gpt-4o, gemini-1.5-flash, claude-3-5-sonnet" />
+        </div>
+
+        <div id="ai-baseurl-group" style="display: none; margin-top: 12px;">
+          <label class="modal-label">Custom Base URL</label>
+          <input type="text" id="modal-ai-baseurl" class="modal-input" placeholder="e.g. https://api.deepseek.com/v1 or http://localhost:11434/v1" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" id="btn-close-ai-settings">Cancel</button>
+        <button class="btn-primary" id="btn-save-ai-settings">Save AI Config</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/driver.js@1.3.1/dist/driver.js.iife.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

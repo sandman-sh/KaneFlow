@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KaneFlow — Autonomous Spec-Driven DevLoop & Self-Healing Engine</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="landing.css">
+</head>
+<body class="grid-lines">
+
+  <!-- Top Navbar -->
+  <header class="site-nav">
+    <div class="shell nav-shell">
+      <a href="#top" class="brand-link" aria-label="KaneFlow home">
+        <svg viewBox="0 0 100 100" class="brand-logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="14" fill="#000000" stroke="#a855f7" stroke-width="3"/>
+          <path d="M22 20 H42 V50 H22 Z" fill="#A855F7"/>
+          <path d="M78 20 H58 V38 H78 Z" fill="#C084FC"/>
+          <path d="M58 48 H78 V80 H58 Z" fill="#A855F7"/>
+          <path d="M22 62 H42 V80 H22 Z" fill="#7E22CE"/>
+          <circle cx="50" cy="50" r="5" fill="#FFFFFF"/>
+        </svg>
+        <span class="brand-title">Kane<span class="text-purple">Flow</span></span>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#architecture" class="nav-link">Architecture</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#specs" class="nav-link">Specs</a>
+        <a href="#pillars" class="nav-link">Pillars</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="http://localhost:4101" target="_blank" class="btn-ghost btn-sm">Target App ↗</a>
+        <a href="/studio" class="btn-primary btn-sm">Launch Studio</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="top" class="hero-section">
+    <div class="hero-canvas-wrap">
+      <canvas id="particle-canvas"></canvas>
+    </div>
+
+    <div class="shell" style="position: relative; z-index: 10;">
+      <div class="hero-pill">
+        <span class="pill-dot"></span>
+        <span>01 / AUTONOMOUS DEVLOOP • POWERED BY KANE CLI</span>
+      </div>
+
+      <h1 class="hero-title">
+        WRITE IN ENGLISH.<br/>
+        <span class="text-purple">KANE VERIFIES.</span><br/>
+        AGENT HEALS.
+      </h1>
+
+      <p class="hero-sub">
+        The autonomous spec-driven devloop connecting AI code generation with plain-English browser automation. Kane CLI tests the browser in real time, catches regressions, and loops failure traces back to the agent until 100% Green.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="/studio" class="btn-primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          Open KaneFlow Studio
+        </a>
+        <a href="#architecture" class="btn-ghost">
+          How Closed Loop Works
+        </a>
+        <div class="cmd-copy-box" id="btn-copy-cmd" title="Click to copy start command">
+          <span class="cmd-copy-icon">$</span>
+          <span>npm start</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Stat Counter Bar -->
+      <div class="stats-bar-grid">
+        <div class="stat-item">
+          <span class="stat-num">100%</span>
+          <span class="stat-tag">Plain English Specs</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">0</span>
+          <span class="stat-tag">Manual Browser Clicks</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">1-Click</span>
+          <span class="stat-tag">Self-Healing Loop</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">v0.8.4</span>
+          <span class="stat-tag">Kane CLI Core Engine</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee Ticker Band -->
+  <div class="marquee-ribbon">
+    <div class="marquee-track">
+      <div class="marquee-node">Plain-English Browser Automation <span class="marquee-square"></span></div>
+      <div class="marquee-node">NDJSON Stream Telemetry <span class="marquee-square"></span></div>
+      <div class="marquee-node">Autonomous Closed-Loop Healer <span class="marquee-square"></span></div>
+      <div class="marquee-node">Real Chromium Browser Verification <span class="marquee-square"></span></div>
+      <div class="marquee-node">AST Diagnostic Extractor <span class="marquee-square"></span></div>
+      <div class="marquee-node">Zero-Config Self-Repair Engine <span class="marquee-square"></span></div>
+      <!-- Duplicated for continuous loop -->
+      <div class="marquee-node">Plain-English Browser Automation <span class="marquee-square"></span></div>
+      <div class="marquee-node">NDJSON Stream Telemetry <span class="marquee-square"></span></div>
+      <div class="marquee-node">Autonomous Closed-Loop Healer <span class="marquee-square"></span></div>
+      <div class="marquee-node">Real Chromium Browser Verification <span class="marquee-square"></span></div>
+      <div class="marquee-node">AST Diagnostic Extractor <span class="marquee-square"></span></div>
+      <div class="marquee-node">Zero-Config Self-Repair Engine <span class="marquee-square"></span></div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="shell">
+      <span class="section-tag"><span class="tag-dot"></span> 01 / About KaneFlow</span>
+      <h2 class="section-h2">Closing the gap in AI code generation.</h2>
+      <p class="section-p">
+        AI coding agents can write code in seconds. But someone still has to open Chrome, click around, and test if the feature actually works. That is the bottleneck. KaneFlow bridges this gap by turning Kane CLI into an agent’s eyes and hands.
+      </p>
+    </div>
+  </section>
+
+  <!-- Architecture & Live Simulator Section -->
+  <section id="architecture" class="section">
+    <div class="shell">
+      <span class="section-tag"><span class="tag-dot"></span> 02 / Architecture</span>
+      <h2 class="section-h2">The Autonomous Closed Loop.</h2>
+      <p class="section-p">
+        Click through each phase below to see how KaneFlow transforms a failing browser run into a verified Green deployment without human intervention.
+      </p>
+
+      <div class="loop-sim-container">
+        <!-- Interactive Step Selector -->
+        <div class="sim-steps-col">
+          <div class="sim-step-card pixel-corner active" data-step="spec">
+            <span class="sim-step-num">Step 01</span>
+            <h4 class="sim-step-title">Ingest Plain-English Spec</h4>
+            <p class="sim-step-desc">Accepts human requirements written in plain English markdown.</p>
+          </div>
+          <div class="sim-step-card pixel-corner" data-step="red">
+            <span class="sim-step-num">Step 02</span>
+            <h4 class="sim-step-title">Kane CLI Real Browser Run</h4>
+            <p class="sim-step-desc">Spawns Desktop Chrome and captures failure assertion traces.</p>
+          </div>
+          <div class="sim-step-card pixel-corner" data-step="diagnose">
+            <span class="sim-step-num">Step 03</span>
+            <h4 class="sim-step-title">AST Failure Diagnostics</h4>
+            <p class="sim-step-desc">Analyzes error traces, DOM targets, and source code logic.</p>
+          </div>
+          <div class="sim-step-card pixel-corner" data-step="diff">
+            <span class="sim-step-num">Step 04</span>
+            <h4 class="sim-step-title">Synthesize & Apply Patch</h4>
+            <p class="sim-step-desc">Generates unified code diff and overwrites target files.</p>
+          </div>
+          <div class="sim-step-card pixel-corner" data-step="green">
+            <span class="sim-step-num">Step 05</span>
+            <h4 class="sim-step-title">Re-Verify to Green</h4>
+            <p class="sim-step-desc">Re-runs Kane CLI until all assertions pass and seals the build.</p>
+          </div>
+        </div>
+
+        <!-- Dynamic Simulator Code Display Box -->
+        <div class="sim-display-box pixel-corner">
+          <div class="sim-display-header">
+            <span class="sim-display-title" id="sim-display-title">Step 1: Ingest Plain-English Spec</span>
+            <span class="sim-display-status status-amber" id="sim-display-status">SPEC PARSED</span>
+          </div>
+          <pre class="sim-display-code" id="sim-display-code"><code>// specs/priority_filter_test.md
+## Step 1: Filter by Urgent Priority
+Click the "Urgent" filter button in the top navigation bar.
+Assert that the active filter banner displays "Urgent".
+Assert that only urgent task cards remain visible on the sprint board.</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid Section -->
+  <section id="features" class="section">
+    <div class="shell">
+      <span class="section-tag"><span class="tag-dot"></span> 03 / Capabilities</span>
+      <h2 class="section-h2">Built for high-velocity engineering.</h2>
+      <p class="section-p">
+        Every component of KaneFlow is built to provide robust, zero-friction verification and auto-repair.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature-card pixel-corner">
+          <div class="feature-icon">🔍</div>
+          <h3 class="feature-h3">Zero-Selector Automation</h3>
+          <p class="feature-p">No XPath or CSS selector brittleness. Kane CLI translates natural language into browser actions using AI vision and DOM reasoning.</p>
+        </div>
+
+        <div class="feature-card pixel-corner">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-h3">Real-Time NDJSON Streaming</h3>
+          <p class="feature-p">Streams line-by-line events (`step`, `action`, `checkpoint`, `verdict`) directly into the agent’s memory context.</p>
+        </div>
+
+        <div class="feature-card pixel-corner">
+          <div class="feature-icon">🧠</div>
+          <h3 class="feature-h3">Dual-Engine Auto-Healer</h3>
+          <p class="feature-p">Supports multi-provider LLM models (OpenAI, Anthropic, Gemini) with built-in semantic AST repair for guaranteed zero-config operation.</p>
+        </div>
+
+        <div class="feature-card pixel-corner">
+          <div class="feature-icon">🛠️</div>
+          <h3 class="feature-h3">Live Code Diff Inspector</h3>
+          <p class="feature-p">Inspect exact unified diffs with highlighted additions and removals before or after patches are applied.</p>
+        </div>
+
+        <div class="feature-card pixel-corner">
+          <div class="feature-icon">👁️</div>
+          <h3 class="feature-h3">Embedded Live App Preview</h3>
+          <p class="feature-p">Watch the target application react live side-by-side with the agent's changes without switching browser tabs.</p>
+        </div>
+
+        <div class="feature-card pixel-corner">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-h3">Sealed Evidence Packs</h3>
+          <p class="feature-p">Every run generates local evidence packs with session logs, video traces, and assertion proofs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Specs Explorer -->
+  <section id="specs" class="section">
+    <div class="shell">
+      <span class="section-tag"><span class="tag-dot"></span> 04 / Verified Test Suites</span>
+      <h2 class="section-h2">Plain-English Test Specs.</h2>
+      <p class="section-p">
+        Explore the built-in specs that verify TaskFlow Pro across critical user workflows.
+      </p>
+
+      <div class="specs-explorer-wrap pixel-corner">
+        <div class="specs-tab-header">
+          <button class="spec-tab-btn active" data-tab="creation">01 / Task Creation</button>
+          <button class="spec-tab-btn" data-tab="filter">02 / Priority Filter</button>
+          <button class="spec-tab-btn" data-tab="workflow">03 / Status Workflow</button>
+        </div>
+
+        <!-- Tab 1 -->
+        <div class="spec-tab-content active" id="spec-tab-creation">
+          <div class="spec-info-col">
+            <h3>Modal Creation & Validation</h3>
+            <p>Verifies opening the task creation modal dialog, filling text inputs, selecting Urgent priority, and asserting that the card appears in the "To Do" column with appropriate priority badges.</p>
+            <a href="/studio" class="btn-primary btn-sm">Run in Studio</a>
+          </div>
+          <div class="terminal-view">
+            <span class="t-prompt">> kaneflow run specs/task_creation_test.md</span><br/>
+            <span class="t-action">[Action] navigate -> http://localhost:4101</span><br/>
+            <span class="t-action">[Action] click -> #btn-open-create-modal</span><br/>
+            <span class="t-action">[Action] fill -> "Deploy KaneFlow Studio"</span><br/>
+            <span class="t-pass">✓ Checkpoint [cp_1]: Modal opened and task created (PASSED)</span><br/>
+            <span class="t-pass">✓ PASS in 18400ms</span>
+          </div>
+        </div>
+
+        <!-- Tab 2 -->
+        <div class="spec-tab-content" id="spec-tab-filter">
+          <div class="spec-info-col">
+            <h3>Priority Tag Filtering</h3>
+            <p>Tests clicking priority tags (Urgent, High, Medium), verifying that the board filters correctly, and testing filter reset.</p>
+            <a href="/studio" class="btn-primary btn-sm">Run in Studio</a>
+          </div>
+          <div class="terminal-view">
+            <span class="t-prompt">> kaneflow run specs/priority_filter_test.md</span><br/>
+            <span class="t-action">[Action] click -> #filter-urgent</span><br/>
+            <span class="t-action">[Action] assert -> active filter banner displays "Urgent"</span><br/>
+            <span class="t-pass">✓ Checkpoint [cp_filter]: Urgent cards visible (PASSED)</span><br/>
+            <span class="t-pass">✓ PASS in 14200ms</span>
+          </div>
+        </div>
+
+        <!-- Tab 3 -->
+        <div class="spec-tab-content" id="spec-tab-workflow">
+          <div class="spec-info-col">
+            <h3>Column Transitions & Counters</h3>
+            <p>Tests moving tasks from "To Do" to "In Progress" to "Done", asserting column count decreases and sidebar completed counter updates.</p>
+            <a href="/studio" class="btn-primary btn-sm">Run in Studio</a>
+          </div>
+          <div class="terminal-view">
+            <span class="t-prompt">> kaneflow run specs/workflow_status_test.md</span><br/>
+            <span class="t-action">[Action] click -> card action progress</span><br/>
+            <span class="t-action">[Action] assert -> in-progress column count = 2</span><br/>
+            <span class="t-pass">✓ Checkpoint [cp_workflow]: Task moved to Done (PASSED)</span><br/>
+            <span class="t-pass">✓ PASS in 16100ms</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engineering Pillars Section -->
+  <section id="pillars" class="section">
+    <div class="shell">
+      <span class="section-tag"><span class="tag-dot"></span> 05 / Engineering Standards</span>
+      <h2 class="section-h2">Architected for production reliability.</h2>
+      <p class="section-p">
+        How KaneFlow delivers robust closed-loop browser verification and self-healing across 4 key dimensions.
+      </p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card pixel-corner">
+          <span class="pillar-weight">Pillar 01</span>
+          <h3 class="pillar-title">Ships</h3>
+          <p class="pillar-desc">100% fully working app and CLI. Zero mocks, zero simulations. One command to run locally in 30 seconds.</p>
+        </div>
+
+        <div class="pillar-card pixel-corner">
+          <span class="pillar-weight">Pillar 02</span>
+          <h3 class="pillar-title">Verified</h3>
+          <p class="pillar-desc">Kane CLI opens real Chromium, executes user flows, tests assertions, and captures evidence traces.</p>
+        </div>
+
+        <div class="pillar-card pixel-corner">
+          <span class="pillar-weight">Pillar 03</span>
+          <h3 class="pillar-title">Closed Loop</h3>
+          <p class="pillar-desc">The tightest loop: Red fail $\rightarrow$ NDJSON trace $\rightarrow$ Healer diagnosis $\rightarrow$ Code patch $\rightarrow$ Green re-run.</p>
+        </div>
+
+        <div class="pillar-card pixel-corner">
+          <span class="pillar-weight">Pillar 04</span>
+          <h3 class="pillar-title">Craft</h3>
+          <p class="pillar-desc">State-of-the-art developer experience with brutalist cyber design, real-time WebSockets, and diff inspection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section id="faq" class="section">
+    <div class="shell">
+      <span class="section-tag"><span class="tag-dot"></span> 06 / FAQ</span>
+      <h2 class="section-h2">Frequently Answered Questions.</h2>
+
+      <div class="faq-wrap">
+        <div class="faq-item pixel-corner open">
+          <div class="faq-q">
+            <span>How does KaneFlow talk to Kane CLI?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">
+            KaneFlow spawns <code>@testmuai/kane-cli</code> with the <code>--agent</code> flag. Kane CLI streams NDJSON events for every step, action, and checkpoint directly into KaneFlow's process manager via standard streams.
+          </div>
+        </div>
+
+        <div class="faq-item pixel-corner">
+          <div class="faq-q">
+            <span>Do I need third-party API keys to run the self-healing demo?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">
+            No. KaneFlow includes a built-in semantic AST repair engine that works 100% out-of-the-box with zero configuration. It also supports optional <code>OPENAI_API_KEY</code>, <code>ANTHROPIC_API_KEY</code>, or <code>GEMINI_API_KEY</code> for open-ended prompt repairs.
+          </div>
+        </div>
+
+        <div class="faq-item pixel-corner">
+          <div class="faq-q">
+            <span>How does this differ from standard Playwright tests?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">
+            Playwright requires developers to hand-code selectors, assertions, and timeouts. Kane CLI uses plain English and AI vision, meaning specifications are written naturally and the agent can fix both the code and the test seamlessly.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <div class="shell">
+    <div class="cta-banner pixel-corner">
+      <h2>Ready to see KaneFlow in action?</h2>
+      <p>Launch the live Studio dashboard and trigger a 1-click self-healing demo in under 10 seconds.</p>
+      <div class="hero-cta-group">
+        <a href="/studio" class="btn-primary">Launch KaneFlow Studio</a>
+        <a href="http://localhost:4101" target="_blank" class="btn-ghost">View Target App ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="shell footer-shell">
+      <div class="footer-left">
+        <svg viewBox="0 0 100 100" style="width: 22px; height: 22px;" fill="none">
+          <rect width="100" height="100" rx="14" fill="#000000" stroke="#a855f7" stroke-width="3"/>
+          <path d="M22 20 H42 V50 H22 Z" fill="#A855F7"/>
+          <path d="M78 20 H58 V38 H78 Z" fill="#C084FC"/>
+          <path d="M58 48 H78 V80 H58 Z" fill="#A855F7"/>
+          <path d="M22 62 H42 V80 H22 Z" fill="#7E22CE"/>
+        </svg>
+        <span class="footer-copy">© 2026 KaneFlow • Autonomous Spec-Driven DevLoop powered by Kane CLI</span>
+      </div>
+
+      <div class="footer-links">
+        <a href="https://github.com/LambdaTest/kane-cli" target="_blank" class="footer-link">Kane CLI</a>
+        <a href="https://luma.com/testmuai" target="_blank" class="footer-link">TestMu AI</a>
+        <a href="/studio" class="footer-link">Studio</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Copy Toast Notification -->
+  <div class="copy-toast" id="copy-toast">
+    <span>✓ Copied <code>npm start</code> to clipboard!</span>
+  </div>
+
+  <script src="landing.js"></script>
+</body>
+</html>

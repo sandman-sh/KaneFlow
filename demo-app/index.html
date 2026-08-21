@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow Pro — Smart Productivity & Sprint Board</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="grid-lines">
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <svg viewBox="0 0 100 100" class="brand-logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="14" fill="#000000" stroke="#a855f7" stroke-width="3"/>
+          <path d="M22 20 H42 V50 H22 Z" fill="#A855F7"/>
+          <path d="M78 20 H58 V38 H78 Z" fill="#C084FC"/>
+          <path d="M58 48 H78 V80 H58 Z" fill="#A855F7"/>
+          <path d="M22 62 H42 V80 H22 Z" fill="#7E22CE"/>
+          <circle cx="50" cy="50" r="5" fill="#FFFFFF"/>
+        </svg>
+        <div class="brand-text">
+          <h2>Task<span class="text-purple">Flow</span> <span class="badge-pro">PRO</span></h2>
+          <p>Verified with Kane CLI</p>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#" class="nav-item active" id="nav-board">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18"/>
+          </svg>
+          Sprint Board
+        </a>
+        <a href="#" class="nav-item" id="nav-metrics">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>
+          </svg>
+          Analytics
+        </a>
+      </nav>
+
+      <div class="sidebar-stats">
+        <div class="stat-card">
+          <span class="stat-label">Total Tasks</span>
+          <span class="stat-val" id="stat-total">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Completed</span>
+          <span class="stat-val text-purple" id="stat-completed">0</span>
+        </div>
+      </div>
+
+      <!-- Quick Bug Injection Bar for Interactive Demo Mode -->
+      <div class="demo-controller pixel-corner" id="demo-controller">
+        <span class="demo-title">⚡ Live Demo Controls</span>
+        <div class="demo-actions">
+          <button id="btn-inject-filter-bug" class="btn-demo-bug" title="Simulate a broken filter logic to trigger Kane failure">
+            🐞 Break Priority Filter
+          </button>
+          <button id="btn-reset-demo" class="btn-demo-reset" title="Reset to standard clean state">
+            ↺ Reset State
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-content">
+      <!-- Top Action Bar -->
+      <header class="topbar">
+        <div class="search-box">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input type="text" id="search-input" placeholder="Search tasks…" autocomplete="off">
+        </div>
+
+        <div class="topbar-actions">
+          <div class="filter-pills" id="filter-pills">
+            <button class="filter-pill active" data-filter="all" id="filter-all">All</button>
+            <button class="filter-pill" data-filter="Urgent" id="filter-urgent">🔥 Urgent</button>
+            <button class="filter-pill" data-filter="High" id="filter-high">⚡ High</button>
+            <button class="filter-pill" data-filter="Medium" id="filter-medium">Medium</button>
+            <button class="filter-pill" data-filter="Low" id="filter-low">Low</button>
+          </div>
+
+          <button id="btn-open-create-modal" class="btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+            New Task
+          </button>
+        </div>
+      </header>
+
+      <!-- Active Filter Banner (Visible when filtered) -->
+      <div id="active-filter-indicator" class="filter-banner" style="display: none;">
+        <span>Active Filter: <strong id="current-filter-name" class="text-purple">All</strong></span>
+        <button id="btn-clear-filter" class="btn-text">Clear Filter</button>
+      </div>
+
+      <!-- Kanban Columns -->
+      <section class="kanban-board">
+        <!-- Column: To Do -->
+        <div class="kanban-col" data-status="todo" id="col-todo">
+          <div class="col-header">
+            <div class="col-title">
+              <span class="status-dot dot-todo"></span>
+              <h3>To Do</h3>
+              <span class="col-count" id="count-todo">0</span>
+            </div>
+            <button class="btn-add-quick" data-status="todo" id="quick-add-todo" title="Quick Add">+</button>
+          </div>
+          <div class="task-list" id="list-todo">
+            <!-- Dynamic task cards -->
+          </div>
+        </div>
+
+        <!-- Column: In Progress -->
+        <div class="kanban-col" data-status="in-progress" id="col-in-progress">
+          <div class="col-header">
+            <div class="col-title">
+              <span class="status-dot dot-progress"></span>
+              <h3>In Progress</h3>
+              <span class="col-count" id="count-in-progress">0</span>
+            </div>
+            <button class="btn-add-quick" data-status="in-progress" id="quick-add-progress" title="Quick Add">+</button>
+          </div>
+          <div class="task-list" id="list-in-progress">
+            <!-- Dynamic task cards -->
+          </div>
+        </div>
+
+        <!-- Column: Done -->
+        <div class="kanban-col" data-status="done" id="col-done">
+          <div class="col-header">
+            <div class="col-title">
+              <span class="status-dot dot-done"></span>
+              <h3>Done</h3>
+              <span class="col-count" id="count-done">0</span>
+            </div>
+            <button class="btn-text-danger" id="btn-clear-done">Clear</button>
+          </div>
+          <div class="task-list" id="list-done">
+            <!-- Dynamic task cards -->
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Create / Edit Task Modal Dialog -->
+  <div class="modal-overlay" id="task-modal" style="display: none;">
+    <div class="modal-box pixel-corner">
+      <div class="modal-header">
+        <h3 id="modal-title">Create New Task</h3>
+        <button id="btn-close-modal" class="btn-close" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="task-form">
+        <input type="hidden" id="task-id" value="">
+        <div class="form-group">
+          <label for="task-title">Task Title <span class="required">*</span></label>
+          <input type="text" id="task-title" placeholder="e.g. Implement OAuth login with Kane CLI" required autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label for="task-desc">Description</label>
+          <textarea id="task-desc" rows="3" placeholder="Add acceptance criteria or details…"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="task-priority">Priority</label>
+            <select id="task-priority">
+              <option value="Urgent">🔥 Urgent</option>
+              <option value="High" selected>⚡ High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="task-status">Initial Status</label>
+            <select id="task-status">
+              <option value="todo" selected>To Do</option>
+              <option value="in-progress">In Progress</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="btn-cancel-modal" class="btn-secondary">Cancel</button>
+          <button type="submit" id="btn-save-task" class="btn-primary">Save Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notification Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

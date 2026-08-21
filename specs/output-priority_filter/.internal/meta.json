@@ -1,0 +1,74 @@
+{
+  "commit_id": "12a17377-3337-4e01-9c78-f9d088df3533",
+  "test_id": "9defb151-3392-405f-b948-5a59b6ba790f",
+  "testcase_id": "01M0GBFM9MAA9F1HKB32YH3YS2",
+  "project_id": "01M0AXX7G09NCZVZ7EY745D894",
+  "folder_id": "01M0AXX9YQ050TZHWDM4PBRTH3",
+  "org_id": "3279415",
+  "session_name": "priority_filter",
+  "executions": [
+    {
+      "execution_id": "d1471818-26a5-484f-8e00-ad16688409f5",
+      "run_kind": "author",
+      "status": "passed",
+      "valid": true,
+      "at": "2026-08-20T21:49:16.507Z"
+    },
+    {
+      "execution_id": "434e4998-53f6-4b51-afc7-94c05dcdec74",
+      "run_kind": "replay",
+      "status": "passed",
+      "valid": true,
+      "at": "2026-08-21T16:13:17.058Z"
+    },
+    {
+      "execution_id": "df6038e8-7282-4fd6-a87d-914caf520958",
+      "run_kind": "replay",
+      "status": "passed",
+      "valid": true,
+      "at": "2026-08-21T16:14:18.554Z"
+    },
+    {
+      "execution_id": "58614fe7-6202-4b82-a941-26d08fca5bb7",
+      "run_kind": "replay",
+      "status": "passed",
+      "valid": true,
+      "at": "2026-08-21T16:15:02.197Z"
+    },
+    {
+      "execution_id": "709a032d-5cec-4bbd-be1d-ceaca797eb2a",
+      "run_kind": "replay",
+      "status": "passed",
+      "valid": true,
+      "at": "2026-08-21T16:20:02.745Z"
+    },
+    {
+      "execution_id": "2bbd0f0e-a868-4234-9058-7007ad93da8d",
+      "run_kind": "replay",
+      "status": "passed",
+      "valid": true,
+      "at": "2026-08-21T16:20:11.282Z"
+    },
+    {
+      "execution_id": "107fa411-650c-4184-9861-4abbdca7b4b3",
+      "run_kind": "replay",
+      "status": "broken",
+      "valid": true,
+      "at": "2026-08-21T16:21:19.711Z"
+    },
+    {
+      "execution_id": "c538862b-1b59-4a44-b254-2e460f12896e",
+      "run_kind": "replay",
+      "status": "passed",
+      "valid": true,
+      "at": "2026-08-21T16:22:18.814Z"
+    },
+    {
+      "execution_id": "f532fa45-2dc6-4501-a528-3577124f2658",
+      "run_kind": "replay",
+      "status": "passed",
+      "valid": true,
+      "at": "2026-08-21T16:30:37.818Z"
+    }
+  ]
+}

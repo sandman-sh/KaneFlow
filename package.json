@@ -1,0 +1,38 @@
+{
+  "name": "kaneflow",
+  "version": "1.0.0",
+  "description": "Autonomous Spec-Driven DevLoop & Self-Healing Engine powered by Kane CLI",
+  "main": "src/index.js",
+  "bin": {
+    "kaneflow": "./bin/kaneflow.js"
+  },
+  "scripts": {
+    "start": "node bin/kaneflow.js studio",
+    "studio": "node bin/kaneflow.js studio",
+    "dev": "node bin/kaneflow.js studio",
+    "run:spec": "node bin/kaneflow.js run",
+    "heal": "node bin/kaneflow.js heal",
+    "watch": "node bin/kaneflow.js watch",
+    "demo": "node bin/kaneflow.js demo"
+  },
+  "keywords": [
+    "kane-cli",
+    "testmuai",
+    "browser-automation",
+    "ai-agent",
+    "self-healing",
+    "tdd",
+    "closed-loop"
+  ],
+  "author": "KaneFlow Team",
+  "license": "MIT",
+  "dependencies": {
+    "@testmuai/kane-cli": "^0.8.3",
+    "chokidar": "^3.6.0",
+    "commander": "^12.1.0",
+    "diff": "^5.2.0",
+    "express": "^4.19.2",
+    "picocolors": "^1.0.1",
+    "ws": "^8.18.0"
+  }
+}

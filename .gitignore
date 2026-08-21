@@ -1,0 +1,8 @@
+node_modules/
+.testmuai/
+.claude/
+.warden/
+kane-runs/
+*.log
+.DS_Store
+.env
