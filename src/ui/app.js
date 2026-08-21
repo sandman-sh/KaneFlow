@@ -56,6 +56,8 @@ class KaneStudioClient {
     this.btnSetTarget = document.getElementById('btn-set-target');
     this.btnReloadPreview = document.getElementById('btn-reload-preview');
     this.targetExternalLink = document.getElementById('target-external-link');
+    this.iframeFallback = document.getElementById('iframe-fallback');
+    this.fallbackOpenLink = document.getElementById('fallback-open-link');
 
     // Spec Modal Elements
     this.specModal = document.getElementById('spec-editor-modal');
@@ -165,10 +167,33 @@ class KaneStudioClient {
 
   applyTargetUrl(url) {
     this.currentTargetUrl = url;
-    this.targetIframe.src = url;
     this.targetExternalLink.href = url;
     this.sendWsMessage({ type: 'SET_TARGET_URL', url });
     this.appendLog(`🌐 Target URL updated: ${url}`, 'info');
+
+    const isLocal = this.isLocalUrl(url);
+
+    if (isLocal) {
+      // Local URLs can be embedded directly
+      this.targetIframe.src = url;
+      this.iframeFallback.style.display = 'none';
+    } else {
+      // External sites usually block iframe embedding — show fallback
+      this.targetIframe.src = 'about:blank';
+      this.fallbackOpenLink.href = url;
+      this.iframeFallback.style.display = 'flex';
+      this.appendLog(`⚠ External site detected — iframe blocked by target. Use "Open in New Tab" or run Kane CLI directly.`, 'warn');
+    }
+  }
+
+  isLocalUrl(url) {
+    try {
+      const parsed = new URL(url);
+      const host = parsed.hostname.toLowerCase();
+      return host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0' || host.endsWith('.local');
+    } catch (e) {
+      return true; // default to local for invalid URLs
+    }
   }
 
   switchTab(tabName) {
