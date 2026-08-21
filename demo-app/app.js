@@ -249,8 +249,6 @@ class TaskFlowApp {
    * Filter predicate logic
    */
   matchesFilter(task) {
-    // Injected Demo Bug: breaks priority filtering
-    if (this.currentFilter !== 'all') return false;
     // 1. Search Query check
     if (this.searchQuery) {
       const matchTitle = task.title.toLowerCase().includes(this.searchQuery);
